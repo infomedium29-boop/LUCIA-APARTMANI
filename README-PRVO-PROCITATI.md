@@ -54,3 +54,10 @@ Slike interijera namjerno **nisu predstavljene kao stvarni smještaj**, jer vlas
 - Za GitHub/Cloudflare: samo zamijeni sadržaj repozitorija, bez build naredbe, output `.`.
 
 - Ako poslužitelj izvora blokira sliku, web pokazuje neutralni brendirani placeholder bez prikaza izmišljenog interijera.
+
+
+## Booking.com ocjena
+Na naslovnicama HR/EN/DE istaknuta je ocjena **9,2 / 10** prema podatku dostavljenom 11. 11. 2026. To je statičan podatak, nije live API; prije javne objave i povremeno nakon toga provjeriti je li ocjena na Booking.com i dalje aktualna. U HTML-u nije dodavan `AggregateRating` jer nemamo potvrđen broj recenzija i sve obavezne uvjete prikaza.
+
+## Izmjena 11.11.2026. — Mobilna hero sekcija
+Na svim jezičnim verzijama centrirani su naslov, podnaslov, opis i oba CTA gumba te uredno poravnate značajke/Booking ocjena u donjem dijelu hero sekcije. Desktop je nepromijenjen. Izmjena je u `css/premium.css`.
