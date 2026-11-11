@@ -397,3 +397,53 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
   .hero--home .hero__actions .btn { min-width: 0; width: min(100%, 235px); }
   .hero--home .trustbar__grid { width: calc(100% - 24px); }
 }
+
+/* Medium29 · Compact availability search between hero and introduction (desktop / tablet / mobile).
+   This is an INQUIRY shortcut, not a live inventory or payment system. */
+.booking-band{position:relative;z-index:4;background:#F6F8F8;padding:28px 24px 0;color:#102C3A;scroll-margin-top:110px}
+.booking-band__wrap{width:min(100%,1248px);margin-inline:auto}
+.booking-bar{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1.18fr) minmax(110px,.65fr) minmax(0,1.05fr) auto;align-items:stretch;gap:0;background:#fff;border:1px solid #DCE6EA;border-radius:18px;box-shadow:0 18px 48px rgba(15,44,59,.10),0 2px 7px rgba(15,44,59,.035);padding:12px;min-height:104px}
+.booking-bar__field{min-width:0;display:flex;flex-direction:column;justify-content:center;position:relative;padding:14px 18px;gap:10px}
+.booking-bar__field:not(:first-child):before{content:"";position:absolute;left:0;top:17px;bottom:17px;width:1px;background:#E3E9EC}
+.booking-bar__field>label{font-family:'Manrope',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:#607681;line-height:1.2;cursor:pointer}
+.booking-bar__control{display:flex;align-items:center;gap:9px;min-width:0}
+.booking-bar__icon{flex:none;width:18px;height:18px;color:#B28A5F}
+.booking-bar__control input,.booking-bar__control select{display:block;min-width:0;width:100%;max-width:100%;border:0!important;padding:0!important;margin:0!important;box-shadow:none!important;background:transparent;color:#133344;font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;line-height:1.5;min-height:26px;outline:0;cursor:pointer;appearance:auto;letter-spacing:0}
+.booking-bar__control input:focus-visible,.booking-bar__control select:focus-visible{outline:2px solid #BD915E!important;outline-offset:5px}
+.booking-bar__control select{padding-right:6px!important}
+.booking-bar__submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;align-self:stretch;white-space:nowrap;min-height:74px;padding:14px 23px;border:0;border-radius:11px;background:#CBA478;color:#102C3A;font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:0;cursor:pointer;transition:background-color .18s ease,transform .18s ease}
+.booking-bar__submit:hover{background:#DEB889}
+.booking-bar__submit:active{transform:scale(.98)}
+.booking-bar__submit:focus-visible{outline:2px solid #102C3A;outline-offset:3px}
+.booking-bar__arrow{width:18px;height:18px;flex:none}
+.booking-band__note{display:flex;align-items:center;justify-content:center;gap:9px;margin:14px auto 0;text-align:center;font-size:11px;color:#677E89;line-height:1.5}
+.booking-band__note-dot{flex:none;width:5px;height:5px;background:#CBA478;border-radius:50%}
+.booking-band + .editorial-section{padding-top:clamp(75px,8.2vw,120px)}
+.contact-form-box[id]{scroll-margin-top:120px}
+@media(max-width:1100px){
+ .booking-bar{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:0}
+ .booking-bar__submit{grid-column:1/-1;margin-top:9px;min-height:52px}
+ .booking-bar__field{padding:15px 12px}
+}
+@media(max-width:767px){
+ .booking-band{padding:18px 16px 0}
+ .booking-bar{grid-template-columns:repeat(2,minmax(0,1fr));padding:9px;border-radius:15px;box-shadow:0 12px 35px rgba(15,44,59,.09)}
+ .booking-bar__field{padding:12px 10px;gap:8px}
+ .booking-bar__field--apartment:before{display:none}
+ .booking-bar__field--guests,.booking-bar__field--apartment{border-top:1px solid #E3E9EC}
+ .booking-bar__field--guests:before{display:none}
+ .booking-bar__field--date:last-of-type:before{display:block}
+ .booking-bar__field>label{font-size:9px;letter-spacing:.08em}
+ .booking-bar__control{gap:5px}
+ .booking-bar__icon{width:14px;height:14px}
+ .booking-bar__control input,.booking-bar__control select{font-size:12px;min-height:29px}
+ .booking-bar__submit{margin-top:8px;min-height:52px;font-size:12px;border-radius:10px}
+ .booking-band__note{font-size:10px;padding-inline:10px;line-height:1.6;margin-top:12px}
+ .booking-band + .editorial-section{padding-top:65px}
+}
+@media(max-width:359px){
+ .booking-band{padding-inline:12px}
+ .booking-bar__field{padding-inline:7px}
+ .booking-bar__control input,.booking-bar__control select{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.booking-bar__submit{transition:none}}

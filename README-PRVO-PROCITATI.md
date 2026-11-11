@@ -61,3 +61,7 @@ Na naslovnicama HR/EN/DE istaknuta je ocjena **9,2 / 10** prema podatku dostavlj
 
 ## Izmjena 11.11.2026. — Mobilna hero sekcija
 Na svim jezičnim verzijama centrirani su naslov, podnaslov, opis i oba CTA gumba te uredno poravnate značajke/Booking ocjena u donjem dijelu hero sekcije. Desktop je nepromijenjen. Izmjena je u `css/premium.css`.
+
+## Nova horizontalna traka za provjeru termina
+Na naslovnicama HR, EN i DE, odmah ispod hero fotografije, dodana je rezervacijska pretraga s datumima dolaska i odlaska, brojem gostiju (1–4) i opcionalnim odabirom apartmana. Gumb prenosi podatke na kontakt formu, gdje su datumi, gosti i apartman već popunjeni.
+**Važno:** ovo nije kalendar sa stvarnom dostupnošću niti automatska rezervacija; domaćin potvrđuje termin i cijenu nakon upita. Obrazac za e-mail slanje i dalje zahtijeva postavljanje Web3Forms ključa u js/main.js.

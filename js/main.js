@@ -41,16 +41,17 @@ document.querySelectorAll('img.remote-photo').forEach(img=>{
  img.addEventListener('error',()=>photoFallback(img));
  if(img.complete && img.naturalWidth===0)photoFallback(img);
 });
-function getFormUrlData(){const p=new URLSearchParams(location.search);return {apartment:p.get('apartment')||'',arrival:p.get('arrival')||'',departure:p.get('departure')||''}}
+function getFormUrlData(){const p=new URLSearchParams(location.search);return {apartment:p.get('apartment')||'',arrival:p.get('arrival')||'',departure:p.get('departure')||'',guests:p.get('guests')||''}}
 const currentValues=getFormUrlData();
 for(const form of document.querySelectorAll('[data-inquiry-form]')){
  const apt=form.elements.namedItem('apartment'),arrival=form.elements.namedItem('arrival'),departure=form.elements.namedItem('departure');
  if(currentValues.apartment&&apt&&!apt.value)apt.value=currentValues.apartment;
  if(currentValues.arrival&&arrival)arrival.value=currentValues.arrival;
  if(currentValues.departure&&departure)departure.value=currentValues.departure;
+ const guestField=form.elements.namedItem('guests');if(currentValues.guests&&guestField&&[...guestField.options].some(o=>o.value===currentValues.guests))guestField.value=currentValues.guests;
  const localDay=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
  if(arrival){arrival.min=localDay;arrival.addEventListener('change',()=>{if(departure){departure.min=arrival.value||localDay;if(departure.value&&departure.value<=arrival.value)departure.value=''}updateWhatsApp()})}
- if(departure)departure.min=localDay;
+ if(departure)departure.min=arrival?.value&&arrival.value>localDay?arrival.value:localDay;
  apt?.addEventListener('change',updateWhatsApp);form.elements.namedItem('guests')?.addEventListener('change',updateWhatsApp);
  function updateWhatsApp(){const unit=apt?.value||'',start=arrival?.value||'',end=departure?.value||'',guests=form.elements.namedItem('guests')?.value||'';
   const msg=lang==='hr'?`Pozdrav, zanima me apartman ${unit||'u objektu Lucia'}${start&&end?`, od ${start} do ${end}`:''}, za ${guests} gostiju. Možete li potvrditi dostupnost i cijenu?`:lang==='en'?`Hello, I am interested in apartment ${unit||'at Lucia'}${start&&end?`, from ${start} to ${end}`:''}, for ${guests} guests. Could you confirm availability and price?`:`Guten Tag, ich interessiere mich für die Ferienwohnung ${unit||'bei Lucia'}${start&&end?`, vom ${start} bis ${end}`:''}, für ${guests} Gäste. Könnten Sie Verfügbarkeit und Preis bestätigen?`;
@@ -115,3 +116,21 @@ fetch('/data/prices.json').then(r=>r.ok?r.json():null).then(data=>{if(!data||!Ar
  setTimeout(close,2600);
 })();
 
+
+// Horizontal inquiry search below the home hero. Never claims live inventory.
+for(const booking of document.querySelectorAll('[data-booking-bar]')){
+ const start=booking.elements.namedItem('arrival');
+ const end=booking.elements.namedItem('departure');
+ const localToday=()=>{const now=new Date();const local=new Date(now.getTime()-now.getTimezoneOffset()*60000);return local.toISOString().slice(0,10)};
+ const today=localToday();start.min=today;end.min=today;
+ start.addEventListener('change',()=>{end.min=start.value||today;if(end.value&&end.value<=start.value)end.value=''});
+ booking.addEventListener('submit',event=>{
+  // User chooses a date range and goes to the existing detailed inquiry form.
+  // No availability is fabricated and no reservation is created here.
+  if(!start.value||!end.value||start.value<today||end.value<=start.value){
+   event.preventDefault();
+   if(!start.value||start.value<today){start.setCustomValidity(lang==='hr'?'Odaberite valjani datum dolaska.':lang==='de'?'Bitte wählen Sie ein gültiges Anreisedatum.':'Please choose a valid check-in date.');start.reportValidity();start.addEventListener('input',()=>start.setCustomValidity(''),{once:true})}
+   else {end.setCustomValidity(lang==='hr'?'Odlazak mora biti nakon dolaska.':lang==='de'?'Die Abreise muss nach der Anreise liegen.':'Check-out must be after check-in.');end.reportValidity();end.addEventListener('input',()=>end.setCustomValidity(''),{once:true})}
+  }
+ });
+}
