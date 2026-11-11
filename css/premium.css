@@ -708,3 +708,30 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
 @media(max-width:479px){.hero .trust-item--booking strong{font-size:clamp(1.75rem,7.6vw,2.05rem)}.hero .trust-item--booking span{font-size:9px}}
 @media(max-width:359px){.hero .trust-item--booking strong{font-size:1.67rem}}
 @media(max-width:767px){.legal-content{width:calc(100% - 32px);padding:26px 22px!important}.legal-content h2{margin-top:30px}.legal-content p,.legal-content li{font-size:13px}}
+
+/* 2026-11-11 · Price inquiry card on the homepage: no empty placeholder price tables */
+.price-box--home{border:1px solid #D8E3E6;border-radius:18px;background:#FFF;overflow:hidden;box-shadow:0 14px 45px rgba(9,37,53,.07)}
+.price-box--home .price-box__top{display:flex;align-items:center;gap:18px;padding:25px 32px;background:#FFF;border-bottom:1px solid #E6ECEE}
+.price-box--home .price-box__top>.ico{width:23px;height:23px;box-sizing:content-box;flex:0 0 23px;padding:12px;border-radius:12px;background:#EDF3F4;color:#94704C}
+.price-box--home .price-box__eyebrow{color:#97704F;font-size:10px}
+.price-box--home .price-box__heading strong{font-size:15px;color:#0B2938}
+.price-box--home .rate-pending{padding:31px 32px 32px}
+.price-box--home .rate-pending__status{margin-bottom:18px}
+.price-box--home .rate-pending h3{font-size:clamp(2rem,3.2vw,3rem);line-height:1.05;max-width:15ch;margin-bottom:15px}
+.price-box--home .rate-pending>p{margin-bottom:26px;color:#596E78;font-size:14px;line-height:1.75;max-width:43ch}
+.price-box--home .rate-pending__button{display:inline-flex;min-width:min(100%,245px);width:auto;padding-inline:24px}
+.price-box--home .rate-pending__meta{margin-top:24px;padding-top:18px;font-size:11px}
+@media(max-width:767px){
+ .price-box--home{border-radius:16px}
+ .price-box--home .price-box__top{padding:21px 20px;gap:13px}
+ .price-box--home .price-box__top>.ico{width:21px;height:21px;flex-basis:21px;padding:10px}
+ .price-box--home .rate-pending{padding:27px 22px 25px}
+ .price-box--home .rate-pending h3{font-size:clamp(2.2rem,8.8vw,2.9rem);max-width:none;overflow-wrap:normal}
+ .price-box--home .rate-pending>p{font-size:13.5px}
+ .price-box--home .rate-pending__button{width:100%;min-width:0;max-width:none}
+}
+@media(max-width:359px){
+ .price-box--home .price-box__top{padding:18px 16px}
+ .price-box--home .rate-pending{padding:24px 18px 23px}
+ .price-box--home .rate-pending h3{font-size:2.1rem}
+}
