@@ -163,7 +163,7 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
 .field label{font-size:11px;font-weight:700}
 .field input,.field select,.field textarea{background:#FBFCFC;border:1px solid #DAE3E6;border-radius:5px}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:#BA986D;outline:1px solid #BA986D}
-.faq-item{background:#fff;border-bottom:1px solid #DEE6E8;border-radius:0}
+.faq-item{background:#fff;border:1px solid #DEE6E8;border-radius:12px;box-shadow:none}
 .faq-item summary{font-weight:650}
 /* INNER PAGE HEROES */
 .page-hero{min-height:540px;background:#0B2839;position:relative;isolation:isolate;display:flex;align-items:flex-end;color:#fff}
