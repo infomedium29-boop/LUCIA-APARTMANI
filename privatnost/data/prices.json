@@ -1,0 +1,27 @@
+{
+  "note": "Rates require explicit confirmation from host; null means unconfirmed",
+  "currency": "EUR",
+  "seasons": [
+    {
+      "season": "early",
+      "start": null,
+      "end": null,
+      "nightlyEUR": null,
+      "minNights": null
+    },
+    {
+      "season": "peak",
+      "start": null,
+      "end": null,
+      "nightlyEUR": null,
+      "minNights": null
+    },
+    {
+      "season": "late",
+      "start": null,
+      "end": null,
+      "nightlyEUR": null,
+      "minNights": null
+    }
+  ]
+}

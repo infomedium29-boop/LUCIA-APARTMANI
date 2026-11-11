@@ -1,0 +1,17 @@
+{
+  "note": "NO LIVE AVAILABILITY: empty data must never be shown as free dates",
+  "units": {
+    "A-1": {
+      "unavailable": []
+    },
+    "A-2": {
+      "unavailable": []
+    },
+    "A-3": {
+      "unavailable": []
+    },
+    "A-4": {
+      "unavailable": []
+    }
+  }
+}
