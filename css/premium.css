@@ -777,3 +777,9 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
 }
 @media(max-width:359px){.cookie-consent{padding:17px 16px}.cookie-consent__actions{gap:7px}.cookie-consent__btn{font-size:10px}.cookie-consent h2{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.cookie-consent__btn{transition:none}}
+
+/* Lucia exterior photo: reframe the source image to exclude its upper-right checkmark stamp.
+   Keep the real accommodation photograph; no overlay or retouching artifacts. */
+.editorial-image{overflow:hidden}
+.editorial-image picture{display:block;width:100%;height:100%}
+.editorial-image img.remote-photo{width:100%;height:100%;object-fit:cover;transform:scale(1.24);transform-origin:center bottom}
