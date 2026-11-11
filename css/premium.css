@@ -508,3 +508,87 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
   .header-right .mobile-lang-control--header .mobile-lang-dropdown summary{width:52px;min-height:38px;padding:0 4px}
   .header-right .mobile-lang-control--header .mobile-lang-dropdown__globe{display:none}
 }
+
+/* === Mobile refinement: seasonal rates and inquiry panel (Medium29) === */
+.price-box--smart{border:1px solid #DDE6E9;border-radius:15px;overflow:hidden;background:#fff;box-shadow:0 14px 34px rgba(9,37,53,.055)}
+.price-box--smart .price-box__top{display:flex;align-items:center;gap:16px;background:#EAF0F2;border-bottom:1px solid #DDE6E9;padding:22px 26px;color:#193A4A}
+.price-box--smart .price-box__top>.ico{width:22px;height:22px;color:#A57C55;flex:0 0 auto}
+.price-box__heading{display:flex;flex-direction:column;gap:4px;min-width:0}
+.price-box__eyebrow{font:700 10px/1.4 var(--font-body);letter-spacing:.15em;color:#718A95}
+.price-box__heading strong{font:700 15px/1.35 var(--font-body);letter-spacing:-.015em;color:#14394C}
+.rate-pending{padding:32px 32px 28px}
+.rate-pending[hidden],.price-box--smart .price-table-wrap[hidden]{display:none!important}
+.rate-pending__status{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:750;color:#805F40;letter-spacing:.02em;margin-bottom:24px}
+.rate-pending__status-dot{width:8px;height:8px;border-radius:50%;background:#C89D70;box-shadow:0 0 0 4px rgba(200,157,112,.12)}
+.rate-pending h3{font-family:var(--font-display);font-size:clamp(1.9rem,3.1vw,2.7rem);font-weight:500;line-height:1.12;letter-spacing:-.03em;margin:0 0 16px;color:#112C3B}
+.rate-pending>p{font-size:14px;line-height:1.75;color:#667B84;max-width:42ch;margin:0 0 26px}
+.rate-pending__button{max-width:100%;min-height:50px;gap:20px;text-align:center;line-height:1.3}
+.rate-pending__meta{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:7px;margin-top:25px;padding-top:18px;border-top:1px solid #E5ECED;color:#6B828B;font-size:11px;line-height:1.55}
+.rate-pending__meta span{display:inline-flex;align-items:center;gap:7px}
+.rate-pending__meta span::before{content:"";height:5px;width:5px;flex:none;border-radius:50%;background:#C19A73}
+.price-box--smart .price-table-wrap{padding:18px 20px 24px}
+.price-box--smart .price-table{font-size:13px}
+.price-box--smart .price-table th,.price-box--smart .price-table td{padding:15px 13px}
+.price-box--smart .price-table thead th{font-size:11px}
+.calendar-layout{scroll-margin-top:110px}
+#odaberite-termin,#choose-dates,#reisedaten-waehlen{scroll-margin-top:110px}
+/* Mobile: consistent gutters, more legible controls, zero dummy-price stacks */
+@media(max-width:767px){
+ .prices-page-layout{gap:26px}
+ .price-box--smart .price-box__top{padding:18px 20px;gap:12px}
+ .price-box__heading strong{font-size:14px}
+ .rate-pending{padding:26px 22px 23px}
+ .rate-pending__status{margin-bottom:19px}
+ .rate-pending h3{font-size:clamp(1.95rem,7.5vw,2.4rem);max-width:16ch}
+ .rate-pending>p{font-size:13.5px;line-height:1.75;margin-bottom:24px}
+ .rate-pending__button{width:100%;justify-content:center;white-space:normal;gap:12px;padding:12px 16px}
+ .rate-pending__meta{font-size:10.5px;margin-top:20px;padding-top:16px;column-gap:15px}
+ .price-box--smart .price-table-wrap{padding:14px}
+ .price-box--smart .price-table,.price-box--smart .price-table tbody{display:block;width:100%}
+ .price-box--smart .price-table thead{display:none}
+ .price-box--smart .price-table tbody{display:grid;gap:10px}
+ .price-box--smart .price-table tbody tr{display:block;width:100%;margin:0;border:1px solid #DFE8EA;border-radius:9px;overflow:hidden;box-shadow:none}
+ .price-box--smart .price-table tbody th{display:block;background:#F3F7F8;padding:13px 16px;font-size:14px;color:#1E4151}
+ .price-box--smart .price-table tbody th::before{display:none}
+ .price-box--smart .price-table tbody td{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 16px;font-size:12px;white-space:normal}
+ .price-box--smart .price-table tbody td:last-child{border:0}
+ .price-box--smart .price-table tbody td::before{content:attr(data-label);color:#657F8A;font-weight:600;font-size:12px;white-space:normal}
+ .calendar-card{padding:18px;border-radius:13px}
+ .calendar-card__header h3{font-size:1.4rem}
+ .calendar-card__days{gap:3px}
+ .calendar-card__days>button{aspect-ratio:auto;min-height:clamp(37px,10.5vw,44px);font-size:12px}
+ .calendar-card__days>span{aspect-ratio:auto;min-height:clamp(37px,10.5vw,44px)}
+ .calendar-card__weekdays{gap:3px}
+ .calendar-unit-select{flex-wrap:wrap;row-gap:8px;align-items:center}
+ .calendar-unit-select select{max-width:100%}
+ .cta-form{padding:22px;border-radius:12px}
+ .form-grid{gap:14px 12px}
+ .field label{font-size:11px}
+ .field input,.field select{font-size:14px;min-height:44px;padding:10px 11px}
+ .field input[type=date]{min-width:0}
+}
+@media(max-width:359px){
+ .price-box--smart .price-box__top{padding:16px}
+ .rate-pending{padding:22px 16px 20px}
+ .rate-pending h3{font-size:1.95rem}
+ .rate-pending__meta{gap:8px}
+ .calendar-card{padding:11px}
+ .calendar-card__days{gap:2px}
+ .calendar-card__days>button,.calendar-card__days>span{min-height:36px}
+ .calendar-card__days>button{font-size:11px}
+ .calendar-card__header h3{font-size:1.24rem}
+ .calendar-unit-select select{width:100%}
+}
+
+/* Confirmed rates: compact, legible mobile rows rather than a stack of placeholder fields. */
+@media(max-width:767px){
+ .price-box--smart .price-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"season rate" "dates rate" "min min";align-items:start;gap:4px 10px;padding:17px 18px}
+ .price-box--smart .price-table tbody th{grid-area:season;background:transparent;padding:0;border:0;font-size:15px;line-height:1.4}
+ .price-box--smart .price-table tbody td{display:block;padding:0;border:0;min-width:0;font-size:12px;line-height:1.55}
+ .price-box--smart .price-table tbody td::before{display:none}
+ .price-box--smart .price-table tbody td:nth-of-type(1){grid-area:dates;color:#687E88;font-size:11.5px;line-height:1.55;overflow-wrap:anywhere}
+ .price-box--smart .price-table tbody td:nth-of-type(2){grid-area:rate;font-size:16px;color:#A77C4F;font-weight:750;text-align:right;white-space:nowrap;align-self:center}
+ .price-box--smart .price-table tbody td:nth-of-type(3){grid-area:min;border-top:1px solid #E3E9EB;margin-top:12px;padding-top:12px;display:flex;justify-content:space-between;color:#214456;font-weight:700}
+ .price-box--smart .price-table tbody td:nth-of-type(3)::before{display:inline;content:attr(data-label);color:#708590;font-weight:500}
+}
+@media(max-width:359px){.price-box--smart .price-table tbody tr{padding:14px 12px}.price-box--smart .price-table tbody td:nth-of-type(2){font-size:15px}}

@@ -71,3 +71,12 @@ Na naslovnicama HR, EN i DE, odmah ispod hero fotografije, dodana je rezervacijs
 - Umjesto tri stalna jezična linka koristi se pristupačni padajući izbornik HR/EN/DE. Prebacivanje ostaje na odgovarajućoj podstranici.
 - Telefonski broj na dnu mobilne navigacije zamijenjen je gumbom "Provjeri dostupnost" (prevedenim na EN/DE).
 - Gumb vodi na traku za izbor datuma i gostiju na početnoj stranici odabranog jezika. Upit nije automatska rezervacija.
+
+
+## Mobilni cjenik (dorada)
+Dok sezonske cijene, datumi i minimalan broj noćenja nisu potvrđeni,
+stranica prikazuje urednu informativnu karticu za slanje upita umjesto
+velikih tablica s praznim vrijednostima. Kada u `data/prices.json` budu
+unesena **sva tri** potpuna zapisa (`start`, `end`, `nightlyEUR`, `minNights`),
+web automatski prikazuje stvarnu tablicu cijena (HR/EN/DE).
+Ne upisivati nepotvrđene cijene.

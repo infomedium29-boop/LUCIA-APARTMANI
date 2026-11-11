@@ -88,12 +88,43 @@ if(cal){const title=cal.querySelector('[data-cal-title]'),weekdays=cal.querySele
  fetch('/data/availability.json').then(r=>r.ok?r.json():null).then(data=>{if(data&&data.units){availability=data;render()}}).catch(()=>{});
  weekdays.innerHTML=messages.days.map(x=>`<span>${x}</span>`).join('');
  function iso(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
- function render(){title.textContent=messages.month[month.getMonth()]+' '+month.getFullYear();prev.disabled=month<=first;let offset=(new Date(month.getFullYear(),month.getMonth(),1).getDay()+6)%7;const max=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();days.innerHTML=Array(offset).fill('<span aria-hidden="true"></span>').join('');for(let day=1;day<=max;day++){const date=new Date(month.getFullYear(),month.getMonth(),day),str=iso(date);const b=document.createElement('button');b.type='button';b.textContent=day;b.title=messages.selected;b.dataset.date=str;const blocked=(calUnit?.value&&availability.units?.[calUnit.value]?.unavailable||[]).includes(str);b.disabled=date<today||blocked;b.setAttribute('aria-label',`${str} — ${blocked?'Unavailable':messages.selected}`);if(blocked)b.classList.add('is-unavailable');if(selected.includes(str))b.classList.add('is-selected');else if(selected.length===2&&str>selected[0]&&str<selected[1])b.classList.add('is-in-range');b.addEventListener('click',()=>{if(selected.length===0||selected.length===2)selected=[str];else if(str<=selected[0])selected=[str];else selected.push(str);render()});days.appendChild(b)}let u=new URL(cta.getAttribute('href'),'https://example.invalid');if(selected[0])u.searchParams.set('arrival',selected[0]);if(selected[1])u.searchParams.set('departure',selected[1]);cta.href=u.pathname+u.search;}
+ function render(){title.textContent=messages.month[month.getMonth()]+' '+month.getFullYear();prev.disabled=month<=first;let offset=(new Date(month.getFullYear(),month.getMonth(),1).getDay()+6)%7;const max=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();days.innerHTML=Array(offset).fill('<span aria-hidden="true"></span>').join('');for(let day=1;day<=max;day++){const date=new Date(month.getFullYear(),month.getMonth(),day),str=iso(date);const b=document.createElement('button');b.type='button';b.textContent=day;b.title=messages.selected;b.dataset.date=str;const blocked=(calUnit?.value&&availability.units?.[calUnit.value]?.unavailable||[]).includes(str);b.disabled=date<today||blocked;b.setAttribute('aria-label',`${str} — ${blocked?'Unavailable':messages.selected}`);if(blocked)b.classList.add('is-unavailable');if(selected.includes(str))b.classList.add('is-selected');else if(selected.length===2&&str>selected[0]&&str<selected[1])b.classList.add('is-in-range');b.addEventListener('click',()=>{if(selected.length===0||selected.length===2)selected=[str];else if(str<=selected[0])selected=[str];else selected.push(str);render()});days.appendChild(b)}let u=new URL(cta.getAttribute('href'),'https://example.invalid');if(selected[0])u.searchParams.set('arrival',selected[0]);if(selected[1])u.searchParams.set('departure',selected[1]);if(calUnit?.value)u.searchParams.set('apartment',calUnit.value);else u.searchParams.delete('apartment');cta.href=u.pathname+u.search;}
  calUnit?.addEventListener('change',()=>{selected=[];render()});prev.addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()-1,1);render()});next.addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);render()});render();
 }
 
-// Rates are rendered only if all fields are explicitly populated by the host.
-fetch('/data/prices.json').then(r=>r.ok?r.json():null).then(data=>{if(!data||!Array.isArray(data.seasons))return;for(const table of document.querySelectorAll('.price-table')){const rows=table.tBodies[0]?.rows;if(!rows)return;data.seasons.slice(0,rows.length).forEach((s,i)=>{if(!s.start||!s.end||typeof s.nightlyEUR!=='number'||!Number.isFinite(s.nightlyEUR)||!s.minNights)return;rows[i].cells[1].textContent=s.start+' – '+s.end;rows[i].cells[2].textContent=new Intl.NumberFormat(lang==='hr'?'hr-HR':lang==='de'?'de-DE':'en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(s.nightlyEUR);rows[i].cells[3].textContent=String(s.minNights)})}}).catch(()=>{});
+// Rates: show the compact inquiry panel until ALL seasonal values are confirmed.
+// When the host completes data/prices.json, reveal the existing semantic price table.
+fetch('/data/prices.json')
+ .then(response=>response.ok?response.json():null)
+ .then(data=>{
+  if(!data||!Array.isArray(data.seasons))return;
+  const isComplete=data.seasons.length>=3&&data.seasons.slice(0,3).every(s=>
+   typeof s.start==='string'&&s.start.trim()&&
+   typeof s.end==='string'&&s.end.trim()&&
+   typeof s.nightlyEUR==='number'&&Number.isFinite(s.nightlyEUR)&&s.nightlyEUR>0&&
+   Number.isInteger(s.minNights)&&s.minNights>0
+  );
+  if(!isComplete)return;
+  for(const section of document.querySelectorAll('[data-price-section]')){
+   const table=section.querySelector('.price-table');
+   const wrap=section.querySelector('[data-price-table]');
+   const pending=section.querySelector('[data-price-pending]');
+   if(!table||!wrap||!pending)continue;
+   const rows=[...(table.tBodies[0]?.rows||[])];
+   if(rows.length<3)continue;
+   const locale=lang==='hr'?'hr-HR':lang==='de'?'de-DE':'en-GB';
+   const formatSeasonDate=iso=>new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',year:'numeric'}).format(new Date(iso+'T12:00:00'));
+   data.seasons.slice(0,3).forEach((season,i)=>{
+    rows[i].cells[1].textContent=formatSeasonDate(season.start)+' – '+formatSeasonDate(season.end);
+    rows[i].cells[2].textContent=new Intl.NumberFormat(locale,{
+     style:'currency',currency:'EUR',maximumFractionDigits:0
+    }).format(season.nightlyEUR);
+    rows[i].cells[3].textContent=String(season.minNights);
+   });
+   wrap.hidden=false;
+   pending.hidden=true;
+  }
+ }).catch(()=>{});
 
 // Premium cinematic intro: session-only and fully skippable.
 // Content is never hidden by default; no JavaScript means no intro overlay.
