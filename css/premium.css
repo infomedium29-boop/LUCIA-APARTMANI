@@ -651,3 +651,19 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
    padding-inline:5px;
  }
 }
+
+/* Mobile single-photo refinement for home strip and gallery */
+@media(max-width:767px){
+  .visual-strip{grid-template-columns:1fr !important;height:clamp(300px,72vw,420px) !important;gap:0 !important;background:#0b2839;border-radius:0;overflow:hidden}
+  .visual-strip__tile{display:block}
+  .visual-strip__tile:not(:first-child){display:none !important}
+  .visual-strip__tile:first-child{min-height:100%}
+  .visual-strip__tile:first-child picture,.visual-strip__tile:first-child img{width:100%;height:100%;display:block;object-fit:cover}
+  .visual-strip__tile>span{left:22px !important;right:22px;bottom:22px !important;font-size:clamp(2.2rem,8vw,3.3rem) !important;line-height:1.06;max-width:8ch}
+  .gallery-grid{grid-template-columns:1fr !important;gap:14px !important}
+  .gallery-tile,.gallery-tile:nth-child(4n+1){grid-row:auto !important;aspect-ratio:4/3 !important}
+}
+@media(max-width:479px){
+  .visual-strip{height:320px !important}
+  .gallery-grid{grid-template-columns:1fr !important}
+}
