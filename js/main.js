@@ -134,3 +134,10 @@ for(const booking of document.querySelectorAll('[data-booking-bar]')){
   }
  });
 }
+
+// Close the mobile header language selector on outside tap or Escape.
+const headerLanguageDropdown=document.querySelector('.mobile-lang-control--header .mobile-lang-dropdown');
+if(headerLanguageDropdown){
+  document.addEventListener('pointerdown',event=>{if(!headerLanguageDropdown.contains(event.target))headerLanguageDropdown.open=false;});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&headerLanguageDropdown.open){headerLanguageDropdown.open=false;headerLanguageDropdown.querySelector('summary')?.focus();}});
+}
