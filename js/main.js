@@ -28,8 +28,19 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
  els.forEach((el,i)=>{if(el.getBoundingClientRect().top>window.innerHeight+60){el.classList.add('is-before');el.style.transitionDelay=`${(i%4)*60}ms`;obs.observe(el)}else{el.classList.add('is-visible')}});
 }
 // Public listing photos are temporary remote sources for review only; local AVIF fallback is explicitly marked as a placeholder.
-function photoFallback(img){if(img.dataset.usedFallback)return;img.dataset.usedFallback='1';img.src=img.dataset.fallback||'/assets/img/photo-placeholder-1.avif';img.classList.add('has-fallback');img.closest('.gallery-tile,.hero__picture,.page-hero__visual')?.classList.add('has-placeholder')}
-document.querySelectorAll('img.remote-photo').forEach(img=>{img.addEventListener('error',()=>photoFallback(img),{once:true});if(img.complete&&img.naturalWidth===0)photoFallback(img)});
+// Fallback chain: direct listing image -> one known confirmed public cover -> neutral brand placeholder.
+// Never substitute another apartment's interior or AI room photo.
+function photoFallback(img){
+ const stage=Number(img.dataset.fallbackStage||0);
+ const next=img.dataset.fallback;
+ if(stage===0 && next && img.getAttribute('src')!==next){img.dataset.fallbackStage='1';img.src=next;return;}
+ if(stage<2){img.dataset.fallbackStage='2';img.src='/assets/img/foto-privremeno-nedostupna.svg';return;}
+ img.closest('.gallery-tile,.hero__picture,.page-hero__visual,.real-gallery__item')?.classList.add('has-placeholder');
+}
+document.querySelectorAll('img.remote-photo').forEach(img=>{
+ img.addEventListener('error',()=>photoFallback(img));
+ if(img.complete && img.naturalWidth===0)photoFallback(img);
+});
 function getFormUrlData(){const p=new URLSearchParams(location.search);return {apartment:p.get('apartment')||'',arrival:p.get('arrival')||'',departure:p.get('departure')||''}}
 const currentValues=getFormUrlData();
 for(const form of document.querySelectorAll('[data-inquiry-form]')){
@@ -103,3 +114,4 @@ fetch('/data/prices.json').then(r=>r.ok?r.json():null).then(data=>{if(!data||!Ar
  document.addEventListener('keydown',function key(e){if(e.key==='Escape'){close();document.removeEventListener('keydown',key)}},{once:false});
  setTimeout(close,2600);
 })();
+

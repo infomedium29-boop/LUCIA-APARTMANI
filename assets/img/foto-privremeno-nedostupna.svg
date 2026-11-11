@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" role="img" aria-label="Originalna fotografija zasad nije dostupna">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102d39"/><stop offset="1" stop-color="#234653"/></linearGradient></defs>
+<rect width="1200" height="780" fill="url(#g)"/>
+<path d="M0 630 C200 555 380 695 600 622 S980 570 1200 630" fill="none" stroke="#cba478" stroke-width="2" opacity=".55"/>
+<path d="M0 660 C235 580 432 735 690 650 S1050 600 1200 668" fill="none" stroke="#fff" stroke-width="2" opacity=".25"/>
+<g fill="none" stroke="#cba478" stroke-width="4" transform="translate(600 315)"><path d="M-54 4C-24-20 -7-20 20-4C38 7 52 9 68-1"/><path d="M-54 21C-24-3 -7-3 20 13C38 24 52 26 68 16"/></g>
+<text x="600" y="425" text-anchor="middle" font-family="Georgia,serif" font-size="53" fill="#f6f8f8">Apartmani Lucia</text>
+<text x="600" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" letter-spacing="4" fill="#bccbd0">BIOGRAD NA MORU</text>
+</svg>

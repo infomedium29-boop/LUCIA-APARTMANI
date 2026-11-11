@@ -38,3 +38,19 @@ Otvori `js/main.js` i na vrhu zamijeni `const WEB3FORMS_ACCESS_KEY = '';` s prav
 
 ## Bitno
 Slike interijera namjerno **nisu predstavljene kao stvarni smještaj**, jer vlasnik još nije dostavio izvorne fotografije. To je dizajnerski prototip za odobrenje vizualnog smjera, a ne gotov oglas za turiste.
+
+
+## Dopuna — stvarne fotografije prema postojećim oglasima (11.11.2026.)
+- Izvor 1: https://www.apartmanija.hr/apartmani/biograd-na-moru/apartmani-vila-lucia/987
+- Izvor 2 (jasno označene jedinice A-1, A-2 i A-4): https://www.smjestaj.com.hr/biograd/apartmani-lucija/
+- Objekt: M. Marulića 3a, Biograd na Moru, kontakt telefon +385 91 240 4046.
+- **A-1** je zasebna galerija `apartment_57972`, **A-2** `apartment_57978`, **A-4** `apartment_57980`. Tako izbjegavamo automatsko poistovjećivanje neimenovanih galerija na Apartmaniji (ID 2080, 2079 i 2082) s oznakama A-1/A-2/A-4.
+- **A-3** u javnim oglasima nije prikazan kao zasebna dostupna smještajna jedinica s galerijom. Nije mu dodijeljena fotografija tuđeg interijera, već samo vanjski izgled objekta.
+- **Važno**: slike s oglasa su **udaljeni URL-ovi (originalni JPEG ili izvorna slika kroz proxy)**, ne lokalni AVIF. U ovom okruženju nije bilo moguće preuzeti binarne izvorne datoteke; u konačnoj javnoj verziji nabavi fotografije od vlasnika, konvertiraj ih lokalno u AVIF/WebP i zamijeni URL-ove.
+- Neki portali mogu blokirati prikaz slika na tuđim webovima ili promijeniti URL. Provjeri nakon Cloudflare deploya. Uzrok eventualnih nedostajućih fotografija nije Cloudflare build.
+- **Nisu mijenjani hero i intro** koji ostaju ilustrativna panorama, kako bi sačuvali izgled odobrenog premium dizajna. Za stvarnu panoramu Biograda treba pribaviti licenciranu snimku.
+- Prije javne uporabe potvrdi pravo na korištenje fotografija s vlasnikom i/ili fotografom. Te fotografije možda nisu slobodne za preuzimanje i daljnju objavu.
+- Kompletan pregled linkova: `FOTOGRAFIJE-IZVORI.csv`.
+- Za GitHub/Cloudflare: samo zamijeni sadržaj repozitorija, bez build naredbe, output `.`.
+
+- Ako poslužitelj izvora blokira sliku, web pokazuje neutralni brendirani placeholder bez prikaza izmišljenog interijera.
