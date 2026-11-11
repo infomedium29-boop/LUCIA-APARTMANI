@@ -102,7 +102,7 @@ fetch('/data/prices.json').then(r=>r.ok?r.json():null).then(data=>{if(!data||!Ar
  if(!intro)return;
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  let already=false;try{already=sessionStorage.getItem('lucia_intro_seen')==='yes'}catch(e){already=false}
- if(reduced||already)return;
+ if(reduced||already||location.hash==='#provjeri-dostupnost')return;
  document.body.classList.add('intro-visible');
  const skip=document.getElementById('introSkip');
  let closed=false;

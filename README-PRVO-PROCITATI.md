@@ -65,3 +65,9 @@ Na svim jezičnim verzijama centrirani su naslov, podnaslov, opis i oba CTA gumb
 ## Nova horizontalna traka za provjeru termina
 Na naslovnicama HR, EN i DE, odmah ispod hero fotografije, dodana je rezervacijska pretraga s datumima dolaska i odlaska, brojem gostiju (1–4) i opcionalnim odabirom apartmana. Gumb prenosi podatke na kontakt formu, gdje su datumi, gosti i apartman već popunjeni.
 **Važno:** ovo nije kalendar sa stvarnom dostupnošću niti automatska rezervacija; domaćin potvrđuje termin i cijenu nakon upita. Obrazac za e-mail slanje i dalje zahtijeva postavljanje Web3Forms ključa u js/main.js.
+
+
+## Mobilni izbornik (nova izmjena)
+- Umjesto tri stalna jezična linka koristi se pristupačni padajući izbornik HR/EN/DE. Prebacivanje ostaje na odgovarajućoj podstranici.
+- Telefonski broj na dnu mobilne navigacije zamijenjen je gumbom "Provjeri dostupnost" (prevedenim na EN/DE).
+- Gumb vodi na traku za izbor datuma i gostiju na početnoj stranici odabranog jezika. Upit nije automatska rezervacija.

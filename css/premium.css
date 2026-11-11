@@ -447,3 +447,36 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
  .booking-bar__control input,.booking-bar__control select{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.booking-bar__submit{transition:none}}
+
+/* Medium29 · elegant language dropdown and direct booking shortcut in the mobile menu */
+@media (max-width:1100px){
+ .mobile-menu__bottom{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:end;gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16)}
+ .mobile-lang-control{position:relative;min-width:0}
+ .mobile-lang-control__label{display:block;margin-bottom:9px;color:#A9BBC5;font-size:9px;font-weight:800;letter-spacing:.19em;line-height:1.2}
+ .mobile-lang-dropdown{position:relative}
+ .mobile-lang-dropdown summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:51px;list-style:none;padding:0 11px;border:1px solid rgba(255,255,255,.31);border-radius:13px;color:#FFF;cursor:pointer;font-family:'Manrope',sans-serif;font-size:13px;font-weight:750;transition:border-color .18s ease,background-color .18s ease}
+ .mobile-lang-dropdown summary::-webkit-details-marker{display:none}
+ .mobile-lang-dropdown summary:hover,.mobile-lang-dropdown[open] summary{background:rgba(255,255,255,.08);border-color:#CBA478}
+ .mobile-lang-dropdown summary:focus-visible{outline:2px solid #CBA478;outline-offset:4px}
+ .mobile-lang-dropdown__globe{width:18px;height:18px;flex:none;color:#D3B082}
+ .mobile-lang-dropdown__chevron{width:14px;height:14px;flex:none;color:#C8D6DB;transition:transform .22s ease}
+ .mobile-lang-dropdown[open] .mobile-lang-dropdown__chevron{transform:rotate(180deg)}
+ .mobile-lang-dropdown__options{position:absolute;left:0;bottom:calc(100% + 10px);width:212px;max-width:calc(100vw - 48px);padding:7px;border:1px solid rgba(224,237,242,.3);border-radius:15px;background:#F9FBFA;box-shadow:0 22px 55px rgba(0,0,0,.25);z-index:160}
+ .mobile-lang-dropdown__options a{display:flex;align-items:center;gap:11px;padding:13px 11px;border:0;border-radius:9px;color:#163341!important;font-size:13px;font-weight:650;letter-spacing:0;text-decoration:none;min-height:45px}
+ .mobile-lang-dropdown__options a:hover,.mobile-lang-dropdown__options a[aria-current="page"]{background:#E9F0F0}
+ .mobile-lang-dropdown__code{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:.04em;color:#386070;background:#E5ECEE;width:30px;height:27px;border-radius:6px;flex:none}
+ .mobile-lang-dropdown__name{flex:1}
+ .mobile-lang-dropdown__check{width:17px;height:17px;color:#B58C60;flex:none}
+ .mobile-menu__bottom .mobile-menu__book{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 12px;min-height:51px;border-radius:13px;border:1px solid transparent;background:#CBA478;color:#0C2937!important;font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:-.01em;line-height:1.3;text-align:center;white-space:normal;box-shadow:0 10px 25px rgba(0,0,0,.12);transition:background-color .18s ease,transform .18s ease}
+ .mobile-menu__bottom .mobile-menu__book:hover{background:#E0BC90}
+ .mobile-menu__bottom .mobile-menu__book:active{transform:scale(.98)}
+ .mobile-menu__book-icon{width:16px;height:16px;flex:none}
+ .mobile-menu__book-arrow{width:15px;height:15px;flex:none}
+}
+@media(max-width:359px){
+ .mobile-menu__bottom{grid-template-columns:92px minmax(0,1fr);gap:8px}
+ .mobile-menu__bottom .mobile-menu__book{font-size:11px;padding-inline:8px;gap:6px}
+ .mobile-menu__book-icon{display:none}
+ .mobile-lang-dropdown summary{padding-inline:8px;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-lang-dropdown__chevron,.mobile-menu__bottom .mobile-menu__book{transition:none}}
