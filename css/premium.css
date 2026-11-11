@@ -195,7 +195,10 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
 /* mobile sticky CTA */
 .mobile-quick{background:#0D2B3B;border:0;box-shadow:0 -10px 35px rgba(0,0,0,.12)}
 .mobile-quick a{background:#CBA478;color:#132A38}
-.mobile-quick a:last-child{background:#1B4557;color:#fff}
+.mobile-quick a:last-child{background:#25D366;color:#073B25}
+.mobile-quick a[href^="https://wa.me/"]{background:#25D366;color:#073B25}
+@media(hover:hover){.mobile-quick a[href^="https://wa.me/"]:hover{background:#1FC35D;color:#073B25}}
+.mobile-quick a[href^="https://wa.me/"]:focus-visible{outline:3px solid #fff;outline-offset:-4px}
 /* Desktop refinements */
 @media(min-width:1101px){.header-inner{gap:24px}.desktop-nav{gap:clamp(13px,1.5vw,23px)}}
 @media(min-width:1440px){.hero__grid{margin-top:55px}.hero .trustbar{bottom:36px}}
