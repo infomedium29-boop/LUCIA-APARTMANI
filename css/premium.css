@@ -688,3 +688,23 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
 @media(max-width:767px){.location-visual.map-preview{min-height:340px;border-radius:12px}.map-preview__open{padding:13px}.map-preview__card{padding:12px 13px;gap:9px}.map-preview__pin{height:36px;width:36px}.map-preview__arrow{width:30px;height:30px}}
 @media(max-width:359px){.map-preview__copy strong{font-size:12px}.map-preview__copy small{font-size:9px}.map-preview__copy em{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.map-preview__arrow{transition:none}}
+
+/* Privacy, cookie and house information: restrained editorial typography */
+.legal-content{max-width:980px!important;padding:clamp(26px,5vw,70px)!important;border-radius:12px!important;background:#fff;box-shadow:0 12px 40px rgba(7,34,49,.045)}
+.legal-content .legal-intro{font-size:clamp(1.05rem,1.55vw,1.2rem);line-height:1.8;color:#3d5360;margin:0 0 40px;max-width:70ch}
+.legal-content h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(1.65rem,2.3vw,2.2rem);line-height:1.15;margin:38px 0 14px;color:#0b2b3c}
+.legal-content p,.legal-content li{font-family:'Manrope',Arial,sans-serif;font-size:14px;line-height:1.9;color:#526571}
+.legal-content p{margin:0 0 17px}.legal-content ul{padding-left:23px;margin:0 0 20px}.legal-content li{margin-bottom:12px}
+.legal-content a{color:#946c41;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.legal-content strong{color:#173547}.legal-content code{font-size:.9em;overflow-wrap:anywhere}
+.legal-table-wrap{overflow-x:auto;width:100%;border:1px solid #dce5e9;border-radius:10px;margin:20px 0 28px}
+.legal-table{border-collapse:collapse;width:100%;text-align:left;min-width:520px;font-family:'Manrope',Arial,sans-serif;font-size:13px;color:#526571}
+.legal-table th{background:#eaf1f3;color:#173547;font-weight:750}.legal-table td,.legal-table th{padding:16px 19px;border-bottom:1px solid #e4eaee;vertical-align:top;line-height:1.7}
+.legal-table tr:last-child td{border-bottom:0}
+/* Score and denominator are uniformly prominent in the hero */
+.hero .trust-item--booking strong{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2.2rem,3.2vw,2.8rem);line-height:1.02;letter-spacing:-.04em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.hero .trust-item--booking span{white-space:normal}
+@media(max-width:900px){.hero .trust-item--booking strong{font-size:2.2rem}}
+@media(max-width:479px){.hero .trust-item--booking strong{font-size:clamp(1.75rem,7.6vw,2.05rem)}.hero .trust-item--booking span{font-size:9px}}
+@media(max-width:359px){.hero .trust-item--booking strong{font-size:1.67rem}}
+@media(max-width:767px){.legal-content{width:calc(100% - 32px);padding:26px 22px!important}.legal-content h2{margin-top:30px}.legal-content p,.legal-content li{font-size:13px}}

@@ -87,3 +87,12 @@ Na iPhoneu je ispravljeno preklapanje polja Dolazak/Odlazak; sada se širinom, v
 
 ## Google Maps lokacija
 Na početnim stranicama HR, EN i DE fotografija u sekciji lokacije zamijenjena je učitanom Google kartom. Klik bilo gdje na kartu otvara upute za vožnju na adresu Marka Marulića 3a, Biograd na Moru. Karta se učitava putem Googlea (vanjski servis); prije javnog puštanja provjerite usklađenost politike privatnosti i postavki privole za vanjski sadržaj.
+
+
+## Ažuriranje 11.11.2026. – tekstovi, privatnost, Booking ocjena
+- Uklonjene vidljive napomene o internim odobrenjima, demonstracijskim fotografijama i nacrtima s web stranica na sva tri jezika.
+- Privatnost i kolačići sada imaju sadržaj temeljen na stvarnim skriptama i servisima (Cloudflare, Web3Forms nakon aktivacije, sessionStorage intro, Google Maps, vanjski poslužitelji fotografija).
+- Ocjena Booking.com u hero traci sada glasi 9,2 / 10 (EN 9.2 / 10) u velikom tipu jednakoj skupini s ostalim brojkama.
+- Prije produkcijske objave provjeriti **puni pravni identitet voditelja obrade** (ime i prezime/pravni oblik), rokove čuvanja, pružatelje usluga i prijenos podataka. Ne izmišljati OIB ni registracijski broj.
+- Trenutačno ugrađeni Google Maps iframe i vanjske fotografije mogu slati podatke trećim stranama prije izričitog pristanka. Za produkcijsku GDPR/ePrivacy usklađenost razmotriti consent-based učitavanje karte i drugih neobaveznih vanjskih usluga.
+- Uklanjanje napomena iz javnog prikaza **nije zamjena za prava na fotografije**. Potrebna dopuštenja riješiti prije javne upotrebe.
