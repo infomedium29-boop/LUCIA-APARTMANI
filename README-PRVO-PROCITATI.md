@@ -83,3 +83,7 @@ Ne upisivati nepotvrđene cijene.
 
 ## Mobilna polja datuma (11.11.2026.)
 Na iPhoneu je ispravljeno preklapanje polja Dolazak/Odlazak; sada se širinom, visinom i razmacima poklapaju s poljima Ime i prezime/E-mail. Ispravak je u `css/premium.css` i vrijedi za HR, EN i DE.
+
+
+## Google Maps lokacija
+Na početnim stranicama HR, EN i DE fotografija u sekciji lokacije zamijenjena je učitanom Google kartom. Klik bilo gdje na kartu otvara upute za vožnju na adresu Marka Marulića 3a, Biograd na Moru. Karta se učitava putem Googlea (vanjski servis); prije javnog puštanja provjerite usklađenost politike privatnosti i postavki privole za vanjski sadržaj.
