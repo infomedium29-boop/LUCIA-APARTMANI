@@ -592,3 +592,62 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
  .price-box--smart .price-table tbody td:nth-of-type(3)::before{display:inline;content:attr(data-label);color:#708590;font-weight:500}
 }
 @media(max-width:359px){.price-box--smart .price-table tbody tr{padding:14px 12px}.price-box--smart .price-table tbody td:nth-of-type(2){font-size:15px}}
+
+/* 2026-11-11 — iPhone Safari date fields: prevent the native control's
+   intrinsic width from overflowing a two-column inquiry form. Match all
+   text/select/date fields in width, height, padding and border treatment. */
+.inquiry-form .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.inquiry-form .form-grid>.field{min-width:0;max-width:100%}
+.inquiry-form .form-grid>.field>input,
+.inquiry-form .form-grid>.field>select{
+  display:block;
+  width:100%;
+  min-width:0;
+  min-inline-size:0;
+  max-width:100%;
+  max-inline-size:100%;
+  box-sizing:border-box;
+  height:46px;
+  min-height:46px;
+  padding:10px 11px;
+  border-radius:5px;
+  border:1px solid #DAE3E6;
+  background:#FBFCFC;
+}
+.inquiry-form .form-grid>.field--date>input[type="date"]{
+  -webkit-appearance:none;
+  appearance:none;
+  flex-shrink:1;
+  overflow:hidden;
+  font-variant-numeric:tabular-nums;
+}
+.inquiry-form .field--date input[type="date"]::-webkit-date-and-time-value{
+  min-width:0;
+  text-align:left;
+}
+.inquiry-form .field--date input[type="date"]::-webkit-datetime-edit{
+  min-width:0;
+  padding:0;
+}
+@media(max-width:767px){
+  .inquiry-form .form-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 12px}
+  .inquiry-form .form-grid>.field>input,
+  .inquiry-form .form-grid>.field>select{
+    font-size:16px; /* Avoid iOS zoom on field focus. */
+    height:46px;
+    min-height:46px;
+  }
+}
+@media(max-width:359px){
+  .inquiry-form .form-grid{column-gap:9px}
+  .inquiry-form .form-grid>.field>input,
+  .inquiry-form .form-grid>.field>select{padding-inline:8px}
+}
+/* Compact date-label typography only on the narrowest phones. The input box
+   remains exactly the same size as the name/e-mail controls. */
+@media(max-width:359px){
+ .inquiry-form .form-grid>.field--date>input[type="date"]{
+   font-size:13px;
+   padding-inline:5px;
+ }
+}

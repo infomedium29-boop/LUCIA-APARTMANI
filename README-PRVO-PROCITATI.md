@@ -80,3 +80,6 @@ velikih tablica s praznim vrijednostima. Kada u `data/prices.json` budu
 unesena **sva tri** potpuna zapisa (`start`, `end`, `nightlyEUR`, `minNights`),
 web automatski prikazuje stvarnu tablicu cijena (HR/EN/DE).
 Ne upisivati nepotvrđene cijene.
+
+## Mobilna polja datuma (11.11.2026.)
+Na iPhoneu je ispravljeno preklapanje polja Dolazak/Odlazak; sada se širinom, visinom i razmacima poklapaju s poljima Ime i prezime/E-mail. Ispravak je u `css/premium.css` i vrijedi za HR, EN i DE.
