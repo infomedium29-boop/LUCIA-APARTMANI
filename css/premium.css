@@ -738,3 +738,42 @@ body.intro-visible .intro-layer{display:block;position:fixed;inset:0;z-index:100
  .price-box--home .rate-pending{padding:24px 18px 23px}
  .price-box--home .rate-pending h3{font-size:2.1rem}
 }
+
+
+/* COOKIE CONSENT · Lucia premium, discreet and equally accessible choices */
+.cookie-consent{position:fixed;z-index:1500;right:24px;bottom:24px;width:min(520px,calc(100vw - 32px));padding:25px 27px 22px;background:#fff;border:1px solid #dce5e9;border-radius:18px;box-shadow:0 22px 75px rgba(5,29,43,.22);color:#112e3e;font-family:Manrope,Arial,sans-serif}
+.cookie-consent[hidden]{display:none!important}
+.cookie-consent__top{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.cookie-consent__mark{display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;border-radius:12px;background:#f0f4f5;color:#a6825b}
+.cookie-consent__mark svg{width:20px;height:20px}
+.cookie-consent h2{font-family:'Instrument Serif',Georgia,serif;font-size:28px;line-height:1.05;letter-spacing:-.025em;font-weight:400;margin:0;color:#0b2b3b}
+.cookie-consent__text{font-size:12px;line-height:1.75;color:#556a74;margin:0 0 16px;max-width:56ch}
+.cookie-consent__details{font-size:11px;line-height:1.5;color:#5e717a;margin:0 0 18px}
+.cookie-consent__details a{color:#946f48;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.cookie-consent__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cookie-consent__btn{appearance:none;border:1px solid #103346;border-radius:999px;min-height:45px;padding:12px 17px;font-family:Manrope,Arial,sans-serif;font-size:12px;line-height:1.2;font-weight:750;cursor:pointer;transition:background-color .16s,color .16s,border-color .16s}
+.cookie-consent__btn--accept{background:#0c2e40;color:#fff}
+.cookie-consent__btn--accept:hover{background:#194b61}
+.cookie-consent__btn--reject{background:#fff;color:#143346}
+.cookie-consent__btn--reject:hover{background:#eef3f5}
+.cookie-consent__btn:focus-visible{outline:3px solid #cba478;outline-offset:3px}
+.cookie-settings-trigger{appearance:none;display:inline-flex;align-items:center;gap:7px;border:0;padding:0;background:transparent;color:#c5d5da;font:600 12px/1.5 Manrope,Arial,sans-serif;text-align:left;cursor:pointer;margin-top:8px;text-decoration:underline;text-underline-offset:4px}
+.cookie-settings-trigger:hover{color:#fff}
+.cookie-settings-trigger:focus-visible{outline:2px solid #cba478;outline-offset:4px}
+.map-preview__consent-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:25px 25px 130px;text-align:center;color:#23485b;background:linear-gradient(150deg,#e7eff2,#f3f6f7 58%,#dce9ec);pointer-events:none}
+.map-preview__consent-fallback[hidden]{display:none!important}
+.map-preview__consent-fallback svg{width:36px;height:36px;color:#af8c64}
+.map-preview__consent-fallback strong{font:600 16px/1.4 Manrope,Arial,sans-serif;color:#113548}
+.map-preview__consent-fallback small{font:400 12px/1.5 Manrope,Arial,sans-serif;color:#5d7581;max-width:27ch}
+.map-preview__frame:not([src]){display:none}
+.intro-visible .cookie-consent{visibility:hidden;pointer-events:none}
+@media(max-width:767px){
+ .cookie-consent{left:50%;right:auto;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(460px,calc(100vw - 28px));padding:20px 20px 18px;border-radius:16px;box-shadow:0 15px 55px rgba(4,27,40,.26)}
+ .cookie-consent h2{font-size:25px}
+ .cookie-consent__text{font-size:11.5px;line-height:1.65}
+ .cookie-consent__details{font-size:10.5px}
+ .cookie-consent__btn{min-height:44px;padding:10px 7px;font-size:11px}
+ .map-preview__consent-fallback{padding-bottom:118px}
+}
+@media(max-width:359px){.cookie-consent{padding:17px 16px}.cookie-consent__actions{gap:7px}.cookie-consent__btn{font-size:10px}.cookie-consent h2{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.cookie-consent__btn{transition:none}}

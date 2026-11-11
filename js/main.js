@@ -172,3 +172,65 @@ if(headerLanguageDropdown){
   document.addEventListener('pointerdown',event=>{if(!headerLanguageDropdown.contains(event.target))headerLanguageDropdown.open=false;});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&headerLanguageDropdown.open){headerLanguageDropdown.open=false;headerLanguageDropdown.querySelector('summary')?.focus();}});
 }
+
+
+// Cookie consent: only optional Google Maps embedding requires opt-in.
+// The site does not currently install analytics or advertising trackers.
+(function initCookieConsent(){
+ const STORAGE_KEY='lucia_cookie_preferences_v1';
+ const copy={
+  hr:{heading:'Vaša privatnost',text:'Koristimo samo nužnu pohranu za rad stranice. Uz vaš pristanak učitavamo Google Maps, koji može koristiti vlastite kolačiće. Ne koristimo marketinške ni analitičke kolačiće.',details:'Više informacija:',policy:'Politika kolačića',accept:'Prihvati',reject:'Odbij',settings:'Postavke kolačića',mapTitle:'Lokacija Apartmana Lucia',mapNote:'Karta se učitava tek nakon prihvaćanja. Upute za dolazak možete otvoriti klikom na karticu ispod.',policyLink:'/kolacici/'},
+  en:{heading:'Your privacy',text:'We use only essential browser storage. With your consent, we load Google Maps, which may use its own cookies. We do not use advertising or analytics cookies.',details:'More information:',policy:'Cookie Policy',accept:'Accept',reject:'Reject',settings:'Cookie settings',mapTitle:'Location of Apartmani Lucia',mapNote:'The map loads only after consent. You can open directions using the card below.',policyLink:'/en/cookies/'},
+  de:{heading:'Ihre Privatsphäre',text:'Wir verwenden nur notwendige Browser-Speicherung. Mit Ihrer Einwilligung laden wir Google Maps, das eigene Cookies verwenden kann. Wir setzen keine Werbe- oder Analyse-Cookies ein.',details:'Weitere Informationen:',policy:'Cookie-Richtlinie',accept:'Akzeptieren',reject:'Ablehnen',settings:'Cookie-Einstellungen',mapTitle:'Lage der Apartmani Lucia',mapNote:'Die Karte wird erst nach Einwilligung geladen. Die Wegbeschreibung öffnen Sie über die Karte unten.',policyLink:'/de/cookies/'}
+ };
+ const t=copy[lang]||copy.hr;
+ let choice='';
+ try{const stored=localStorage.getItem(STORAGE_KEY);choice=stored==='accepted'||stored==='rejected'?stored:'';}catch(e){}
+ let settingsSource=null;
+ const banner=document.createElement('section');
+ banner.className='cookie-consent';
+ banner.id='lucia-cookie-consent';
+ banner.setAttribute('role','dialog');
+ banner.setAttribute('aria-modal','false');
+ banner.setAttribute('aria-labelledby','lucia-cookie-title');
+ banner.setAttribute('aria-describedby','lucia-cookie-explanation');
+ banner.hidden=!!choice;
+ banner.innerHTML=`<div class="cookie-consent__top"><span class="cookie-consent__mark" aria-hidden="true"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 8h.01M15 9h.01M10 14h.01M16 15h.01"/></svg></span><h2 id="lucia-cookie-title">${t.heading}</h2></div><p class="cookie-consent__text" id="lucia-cookie-explanation">${t.text}</p><p class="cookie-consent__details">${t.details} <a href="${t.policyLink}">${t.policy}</a></p><div class="cookie-consent__actions"><button type="button" class="cookie-consent__btn cookie-consent__btn--reject" data-cookie-choice="rejected">${t.reject}</button><button type="button" class="cookie-consent__btn cookie-consent__btn--accept" data-cookie-choice="accepted">${t.accept}</button></div>`;
+ document.body.appendChild(banner);
+ const footer=document.querySelector('.footer-grid>div:last-child')||document.querySelector('.site-footer');
+ if(footer){
+  const settings=document.createElement('button');
+  settings.type='button';settings.className='cookie-settings-trigger';settings.dataset.cookieSettings='';
+  settings.setAttribute('aria-controls',banner.id);settings.textContent=t.settings;footer.appendChild(settings);
+  settings.addEventListener('click',()=>{settingsSource=settings;banner.hidden=false;banner.querySelector('[data-cookie-choice="rejected"]').focus()});
+ }
+ // Map is optional: HTML stores the URL in data-cookie-src so Google receives no embed request before consent.
+ const mapFrames=[...document.querySelectorAll('iframe[data-cookie-src]')];
+ mapFrames.forEach(frame=>{
+  const map=frame.closest('.map-preview');
+  if(!map)return;
+  const placeholder=document.createElement('div');
+  placeholder.className='map-preview__consent-fallback';
+  placeholder.innerHTML=`<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>${t.mapTitle}</strong><small>${t.mapNote}</small>`;
+  map.insertBefore(placeholder,frame);
+ });
+ function updateMaps(){
+  mapFrames.forEach(frame=>{
+   const placeholder=frame.parentElement?.querySelector('.map-preview__consent-fallback');
+   if(choice==='accepted'){
+    if(frame.getAttribute('src')!==frame.dataset.cookieSrc)frame.src=frame.dataset.cookieSrc;
+    if(placeholder)placeholder.hidden=true;
+   }else{
+    if(frame.hasAttribute('src'))frame.removeAttribute('src');
+    if(placeholder)placeholder.hidden=false;
+   }
+  });
+ }
+ banner.querySelectorAll('[data-cookie-choice]').forEach(btn=>btn.addEventListener('click',()=>{
+  choice=btn.dataset.cookieChoice;
+  try{localStorage.setItem(STORAGE_KEY,choice)}catch(e){}
+  updateMaps();banner.hidden=true;
+  if(settingsSource){settingsSource.focus();settingsSource=null}
+ }));
+ updateMaps();
+})();

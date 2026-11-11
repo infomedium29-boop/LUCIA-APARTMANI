@@ -96,3 +96,11 @@ Na početnim stranicama HR, EN i DE fotografija u sekciji lokacije zamijenjena j
 - Prije produkcijske objave provjeriti **puni pravni identitet voditelja obrade** (ime i prezime/pravni oblik), rokove čuvanja, pružatelje usluga i prijenos podataka. Ne izmišljati OIB ni registracijski broj.
 - Trenutačno ugrađeni Google Maps iframe i vanjske fotografije mogu slati podatke trećim stranama prije izričitog pristanka. Za produkcijsku GDPR/ePrivacy usklađenost razmotriti consent-based učitavanje karte i drugih neobaveznih vanjskih usluga.
 - Uklanjanje napomena iz javnog prikaza **nije zamjena za prava na fotografije**. Potrebna dopuštenja riješiti prije javne upotrebe.
+
+
+## Cookie banner / izbor posjetitelja (11.11.2026.)
+- Na svim stranicama s glavnim JavaScript modulom pojavljuje se dvojezično/trojezično prilagođen cookie banner (HR/EN/DE) pri prvom ulasku.
+- Opcije **Prihvati** i **Odbij** jednako su dostupne; izbor se pamti u lokalnoj pohrani `lucia_cookie_preferences_v1`. U footeru je gumb **Postavke kolačića** za promjenu.
+- **Google Maps embed** na naslovnici učitava se samo nakon prihvaćanja. Odbijanje prikazuje neutralnu kartu-lokator i ostavlja aktivnu poveznicu za otvaranje uputa u Google Mapsu.
+- Site trenutačno **nema Analytics ni Meta Pixel**. Ako se kasnije dodaju neobavezni trackeri, treba ih vezati uz istu provjeru odabira, a ne automatski uključivati.
+- Vanjski Google Fonts i fotografije s portala za smještaj još se učitavaju izvana: to nije blokirano ovom privolom. Za potpuno lokalno učitavanje dobaviti dopuštene originale i hostati ih na sajtu.
